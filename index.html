@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Streaming</title>
+    <link rel="stylesheet" href="styles.css/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+        }
+        label, input, select {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        #imagenContainer {
+            margin: 20px 0;
+        }
+        #servicioImagen {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Servicio de Streaming</h1>
+        <form id="streamingForm">
+            <label for="idCliente">ID Cliente:</label>
+            <input type="text" id="idCliente" name="idCliente" required>
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="streaming">Selecciona un servicio:</label>
+            <select id="streaming" name="streaming" required>
+                <option value="">-- Selecciona una opción --</option>
+                <option value="Netflix" data-img="./Imagen/Netflix.jpg">Netflix ($9 + $2 por TV)</option>
+                <option value="Disney" data-img="./Imagen/Disney.jpg">Disney ($6 + $3 por START)</option>
+                <option value="Max" data-img="./Imagen/Max.jpg">Max ($7 + $3 por Cartoon Network)</option>
+                <option value="Primevideo" data-img="./Imagen/Primevideo.jpg">Prime Video ($12 + $5 por Envío Express)</option>
+            </select>
+
+            <div id="imagenContainer">
+                <img id="servicioImagen" src="" alt="Selecciona un servicio" class="hidden">
+            </div>
+
+            <button type="submit">Generar Factura</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

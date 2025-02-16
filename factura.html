@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="styles.css/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        #facturaImagen {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Factura del Servicio</h1>
+        <div id="facturaDetalle"></div>
+        <img id="facturaImagen" src="" alt="Servicio Seleccionado" class="hidden">
+        <button onclick="window.print()">Imprimir Factura</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+
+            // Verificar si hay parámetros
+            if (params.toString() === "") {
+                alert("No se encontraron datos de factura.");
+                return;
+            }
+
+            const facturaHTML = `
+                <p><strong>ID Cliente:</strong> ${params.get('idCliente')}</p>
+                <p><strong>Nombre:</strong> ${params.get('nombre')}</p>
+                <p><strong>Edad:</strong> ${params.get('edad')}</p>
+                <p><strong>Teléfono:</strong> ${params.get('telefono')}</p>
+                <p><strong>Correo:</strong> ${params.get('correo')}</p>
+                <p><strong>Servicio Seleccionado:</strong> ${params.get('servicio')}</p>
+                <p><strong>Precio Base:</strong> $${params.get('precioBase')}</p>
+                <p><strong>Costo Adicional:</strong> $${params.get('costoAdicional')}</p>
+                <p><strong>Impuesto (15%):</strong> $${params.get('impuesto')}</p>
+                <p class="total"><strong>Total a Pagar:</strong> $${params.get('total')}</p>
+            `;
+            document.getElementById('facturaDetalle').innerHTML = facturaHTML;
+
+            const facturaImagen = document.getElementById('facturaImagen');
+            facturaImagen.src = params.get('imagen');
+            facturaImagen.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
